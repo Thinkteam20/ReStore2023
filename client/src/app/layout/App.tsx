@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import { Product } from "./product";
+import "./style.css";
+import { Product } from "../models/product";
+import Catalog from "../../features/Catalog";
 
 function App() {
     const [products, setProducts] = useState<Product[]>([]);
@@ -21,21 +22,13 @@ function App() {
                 brand: "some brand",
                 description: "some des",
                 pictureUrl: "http://picsum/200",
-
             },
         ]);
     }
     return (
         <div className='App'>
             <h1>Re-Store</h1>
-            <ul>
-                {products.map((product, index) => (
-                    <li key={index}>
-                        {product.name} - {product.price}
-                    </li>
-                ))}
-            </ul>
-            <button onClick={() => addProduct()}>add</button>
+            <Catalog products={products} addProduct={addProduct} />
         </div>
     );
 }
